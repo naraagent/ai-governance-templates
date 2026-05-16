@@ -1,0 +1,13 @@
+{
+  "name": "Conventional Commit Validation",
+  "version": "1.0.0",
+  "description": "Remind agent to use conventional commit format before shell operations involving git commit",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["shell"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "If this shell command involves a git commit, ensure the commit message follows Conventional Commits format: type(scope): description. Valid types: feat, fix, docs, style, refactor, test, chore, perf, ci, build. Max 72 chars, lowercase, imperative mood, no period at end. Include ticket reference in body if applicable."
+  }
+}

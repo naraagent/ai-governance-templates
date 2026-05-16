@@ -1,0 +1,13 @@
+{
+  "name": "Terraform Plan Review",
+  "version": "1.0.0",
+  "description": "Review terraform changes before any shell execution involving terraform",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["shell"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "If this command involves terraform apply or terraform destroy: DENY the operation. Only terraform init, plan, validate, and fmt are allowed without human approval. If it's terraform plan, proceed but remind that apply requires manual execution by an authorized operator."
+  }
+}

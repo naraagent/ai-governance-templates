@@ -1,0 +1,13 @@
+{
+  "name": "Python Quality Gate",
+  "version": "1.0.0",
+  "description": "Check Python code quality before writing",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "If writing a Python file, verify: 1) All functions have type hints (params + return). 2) No print() statements (use logger). 3) No except: pass or bare except. 4) No mutable default arguments. 5) No hardcoded credentials or ARNs. 6) Pydantic models used for input validation. If issues found, fix before writing."
+  }
+}

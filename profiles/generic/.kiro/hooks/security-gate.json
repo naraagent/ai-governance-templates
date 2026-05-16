@@ -1,0 +1,13 @@
+{
+  "name": "Security Gate",
+  "version": "1.0.0",
+  "description": "Check for security issues before writing any file",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, check for hardcoded secrets (API keys, tokens, passwords, connection strings with credentials). If any secret pattern is detected, DENY the write and instruct to use environment variables or a secrets manager instead."
+  }
+}

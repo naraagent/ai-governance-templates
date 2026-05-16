@@ -1,0 +1,13 @@
+{
+  "name": "Security Check on Write",
+  "version": "1.0.0",
+  "description": "Verify no secrets or security issues are introduced when writing files",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, verify: 1) No hardcoded secrets, tokens, or passwords are present. 2) No SQL injection patterns (string concatenation in queries). 3) No disabled SSL/TLS verification. 4) No sensitive data that would be logged. If any security issue is found, DENY the write and explain the issue."
+  }
+}

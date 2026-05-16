@@ -1,0 +1,13 @@
+{
+  "name": "Block Terraform Apply",
+  "version": "1.0.0",
+  "description": "Prevent terraform apply/destroy from being executed by agent",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["shell"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "CRITICAL: If this shell command contains 'terraform apply', 'terraform destroy', 'terraform import', or 'terraform state' operations, you MUST DENY this operation. These commands require human approval and manual execution. Only terraform init, validate, plan, fmt, and output are allowed. If the command is blocked, explain that infrastructure changes must be applied by an authorized operator after reviewing the plan output."
+  }
+}

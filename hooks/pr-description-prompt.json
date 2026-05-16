@@ -1,0 +1,12 @@
+{
+  "name": "PR Description Generator",
+  "version": "1.0.0",
+  "description": "Generate standardized PR description when agent execution completes on a feature branch",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Generate a PR description for the current branch using FEMSA standard template. Include: ## Qué cambia, ## Por qué (reference Jira ticket from branch name), ## Cómo probar (step-by-step), ## Tipo de cambio (checkboxes), ## Checklist. Extract ticket ID from branch name. Summarize all commits on this branch vs develop."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Accessibility Check",
+  "version": "1.0.0",
+  "description": "Verify WCAG 2.1 AA compliance when writing React components",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "If writing a React component (.tsx), verify WCAG 2.1 AA compliance: 1) Interactive elements have aria-label or aria-labelledby. 2) Images have meaningful alt text. 3) Buttons/links have accessible names. 4) Form inputs have associated labels. 5) Color contrast meets 4.5:1 ratio for text. 6) Keyboard navigation is supported. If issues found, fix them before writing."
+  }
+}

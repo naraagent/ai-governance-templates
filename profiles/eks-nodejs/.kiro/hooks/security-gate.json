@@ -1,0 +1,13 @@
+{
+  "name": "Security Gate",
+  "version": "1.0.0",
+  "description": "Check for secrets and security issues before writing files",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, check for: 1) Hardcoded secrets (API keys, tokens, passwords). 2) SQL injection (string interpolation in queries). 3) console.log in production code. 4) Untyped functions (missing return types). 5) Empty catch blocks. If issues found, DENY the write and explain what needs to be fixed."
+  }
+}
