@@ -1,0 +1,13 @@
+{
+  "name": "Security Gate — iOS",
+  "version": "1.0.0",
+  "description": "Pre-write security checks for iOS Swift applications",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, check for: 1) Hardcoded secrets, API keys, or tokens (use Keychain or secure config). 2) Sensitive data stored in UserDefaults (must use Keychain with proper access control). 3) App Transport Security (ATS) exceptions being added without justification. 4) NSLog/print with sensitive data (tokens, PII, passwords). 5) Force unwrapping without comment explaining safety. 6) Missing [weak self] in escaping closures that reference self. If issues found, DENY the write and explain what needs to be fixed."
+  }
+}

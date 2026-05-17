@@ -13,6 +13,10 @@
 - Styling: Tailwind CSS + shadcn/ui
 - Auth: AWS Cognito (NextAuth.js adapter)
 - i18n: next-intl
+- E2E Testing: Playwright
+- CI: Jenkins multibranch pipeline (cicd.socoomni.com)
+- Code hosting: Bitbucket (workspace: digitaldifarma)
+- Environments: CL (Chile), CO (Colombia), EC (Ecuador), MX (Mexico)
 
 ## Build
 

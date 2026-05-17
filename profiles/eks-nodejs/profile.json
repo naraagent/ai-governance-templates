@@ -1,0 +1,19 @@
+{
+  "name": "eks-nodejs",
+  "version": "1.0.0",
+  "description": "Node.js/TypeScript microservice on AWS EKS with Helm (Capsula pattern), Jenkins CI, and FEMSA multi-country conventions",
+  "priority": 6,
+  "detection": {
+    "requiredFiles": ["package.json", "tsconfig.json"],
+    "optionalFiles": [["Dockerfile", "docker-compose.yml"], ["Jenkinsfile", "jenkins/Jenkinsfile"]],
+    "requiredDirs": ["src"],
+    "specialChecks": ["contains kubernetes or helm directory", "package.json has express or fastify dependency"]
+  },
+  "runtime": {
+    "language": "typescript",
+    "platform": "eks",
+    "buildTool": "npm",
+    "nodeVersion": "20"
+  },
+  "tags": ["nodejs", "typescript", "eks", "kubernetes", "helm", "jenkins", "femsa", "microservice"]
+}

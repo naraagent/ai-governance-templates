@@ -1,0 +1,9 @@
+{
+  "name": "Lint & Type Check on Save",
+  "description": "Run ESLint and TypeScript type checking when source files are saved",
+  "event": "fileEdited",
+  "filePatterns": ["**/*.ts", "**/*.tsx"],
+  "action": "runCommand",
+  "command": "npx eslint --fix ${file} && npx tsc --noEmit",
+  "timeout": 30
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Kotlin Lint on Save",
+  "version": "1.0.0",
+  "description": "Run ktlintCheck when Kotlin files are saved",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["*.kt"]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "./gradlew ktlintCheck --daemon"
+  }
+}

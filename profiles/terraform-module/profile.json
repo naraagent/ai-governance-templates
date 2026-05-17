@@ -1,0 +1,19 @@
+{
+  "name": "terraform-module",
+  "version": "1.0.0",
+  "description": "Terraform/Terragrunt infrastructure module for AWS multi-account deployment with FEMSA conventions",
+  "priority": 8,
+  "detection": {
+    "requiredFiles": [],
+    "optionalFiles": [["main.tf", "versions.tf", "terragrunt.hcl"]],
+    "requiredDirs": [],
+    "specialChecks": ["*.tf files exist in root", "variables.tf or providers.tf present"]
+  },
+  "runtime": {
+    "language": "hcl",
+    "platform": "aws",
+    "buildTool": "terraform",
+    "terraformVersion": "1.7+"
+  },
+  "tags": ["terraform", "terragrunt", "iac", "aws", "infrastructure", "multi-account", "femsa"]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Security Gate — Lambda",
+  "version": "1.0.0",
+  "description": "Pre-write security checks for Lambda Node.js functions",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, check for: 1) Hardcoded secrets (API keys, tokens, AWS credentials, account IDs). 2) IAM policies with wildcard resources (Resource: '*'). 3) Synchronous Lambda invocations (invoke another Lambda directly instead of SQS/EventBridge). 4) console.log usage (must use Lambda Powertools logger). 5) Missing input validation (handler without Zod schema). 6) Timeout misuse (900s for API-triggered functions). If issues found, DENY the write and explain what needs to be fixed."
+  }
+}

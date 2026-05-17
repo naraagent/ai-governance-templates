@@ -1,0 +1,18 @@
+{
+  "name": "android-kotlin",
+  "version": "1.0.0",
+  "description": "Android application built with Kotlin, Gradle (Kotlin DSL), MVVM + Clean Architecture, and Jetpack Compose",
+  "priority": 3,
+  "detection": {
+    "requiredFiles": [],
+    "optionalFiles": [["build.gradle.kts", "build.gradle"]],
+    "requiredDirs": [],
+    "specialChecks": ["AndroidManifest.xml in subdirs", "src/main/kotlin/ or src/main/java/ exists"]
+  },
+  "runtime": {
+    "language": "kotlin",
+    "platform": "android",
+    "buildTool": "gradle"
+  },
+  "tags": ["android", "kotlin", "mobile", "gradle", "compose", "mvvm"]
+}

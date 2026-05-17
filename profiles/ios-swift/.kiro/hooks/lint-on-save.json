@@ -1,0 +1,13 @@
+{
+  "name": "SwiftLint on Save",
+  "version": "1.0.0",
+  "description": "Run SwiftLint when Swift files are saved",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["*.swift"]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "swiftlint lint --path ${file} --quiet"
+  }
+}

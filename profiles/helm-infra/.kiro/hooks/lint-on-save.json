@@ -1,0 +1,13 @@
+{
+  "name": "Helm Lint on Save",
+  "version": "1.0.0",
+  "description": "Run helm lint when YAML/template files are saved in Helm chart repos",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["*.yaml", "*.yml", "*.tpl"]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "helm lint ."
+  }
+}

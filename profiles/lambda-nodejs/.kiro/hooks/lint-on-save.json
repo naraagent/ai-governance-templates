@@ -1,0 +1,13 @@
+{
+  "name": "Lint TypeScript on Save",
+  "version": "1.0.0",
+  "description": "Run ESLint with auto-fix when TypeScript files are saved in Lambda functions",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["*.ts"]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npx eslint --fix ${file}"
+  }
+}

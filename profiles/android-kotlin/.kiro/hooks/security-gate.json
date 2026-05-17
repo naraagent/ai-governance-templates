@@ -1,0 +1,13 @@
+{
+  "name": "Security Gate — Android",
+  "version": "1.0.0",
+  "description": "Pre-write security checks for Android Kotlin applications",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, check for: 1) Hardcoded API keys, tokens, or secrets (use BuildConfig or encrypted storage). 2) Plain SharedPreferences for sensitive data (must use EncryptedSharedPreferences). 3) Cleartext traffic or disabled SSL (must use HTTPS + certificate pinning). 4) Exported components without permission restrictions. 5) WebView with JavaScript enabled without justification. 6) Blocking calls on main thread (must use coroutines with Dispatchers.IO). If issues found, DENY the write and explain what needs to be fixed."
+  }
+}

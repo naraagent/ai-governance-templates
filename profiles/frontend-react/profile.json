@@ -1,0 +1,19 @@
+{
+  "name": "frontend-react",
+  "version": "1.0.0",
+  "description": "React/Next.js 14 frontend application with App Router, Zustand, shadcn/ui, Cognito auth, and next-intl for FEMSA multi-country apps",
+  "priority": 7,
+  "detection": {
+    "requiredFiles": ["package.json", "tsconfig.json"],
+    "optionalFiles": [["next.config.mjs", "next.config.js", "next.config.ts"]],
+    "requiredDirs": [],
+    "specialChecks": ["package.json has next dependency", "src/app/ directory exists (App Router)"]
+  },
+  "runtime": {
+    "language": "typescript",
+    "platform": "nextjs",
+    "buildTool": "npm",
+    "framework": "next14"
+  },
+  "tags": ["react", "nextjs", "typescript", "frontend", "tailwind", "zustand", "cognito", "femsa"]
+}

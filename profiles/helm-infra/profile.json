@@ -1,0 +1,18 @@
+{
+  "name": "helm-infra",
+  "version": "1.0.0",
+  "description": "Helm chart for Kubernetes infrastructure using the Capsula pattern (parent chart + subcharts per service)",
+  "priority": 5,
+  "detection": {
+    "requiredFiles": ["Chart.yaml", "values.yaml"],
+    "optionalFiles": [],
+    "requiredDirs": ["templates"],
+    "repoNamePatterns": []
+  },
+  "runtime": {
+    "language": "yaml",
+    "platform": "kubernetes",
+    "buildTool": "helm"
+  },
+  "tags": ["helm", "kubernetes", "infrastructure", "charts", "capsula", "k8s"]
+}

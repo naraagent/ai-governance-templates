@@ -1,0 +1,13 @@
+{
+  "name": "Security Gate — Helm",
+  "version": "1.0.0",
+  "description": "Pre-write security checks for Helm chart templates and values",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, check for: 1) Privileged containers (privileged: true, hostNetwork: true, hostPID: true). 2) Missing security context (runAsNonRoot, readOnlyRootFilesystem, allowPrivilegeEscalation). 3) Hardcoded secrets in values or templates (credentials, tokens, passwords). 4) Missing resource limits (CPU/memory not defined). 5) Latest image tag in production values. 6) Wildcard RBAC permissions (verbs: ['*'] or resources: ['*']). If issues found, DENY the write and explain what needs to be fixed."
+  }
+}

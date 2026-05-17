@@ -12,6 +12,9 @@
 - Deploy: Helm charts (Capsula pattern) via Jenkins
 - Registry: AWS ECR
 - Secrets: HashiCorp Vault
+- CI: Jenkins multibranch pipeline (cicd.socoomni.com)
+- Code hosting: Bitbucket (workspace: digitaldifarma)
+- Environments: CL (Chile), CO (Colombia), EC (Ecuador), MX (Mexico)
 
 ## Build
 
@@ -62,6 +65,8 @@ src/
 - Format: `type/TICKET-descripcion-corta`
 - Types: `feature/`, `fix/`, `bugfix/`, `hotfix/`, `release/`, `chore/`
 - Integration: `develop` | Production: `main`
+- Bitbucket branch regex: `(.*staging.*|chore/deps-update|.*main.*|dev/{country}/.*|fix/.*|hotfix/.*)`
+- Service naming convention: `{service}-{country}` suffix (e.g., `customer-service-cl`, `payment-service-mx`)
 
 ### Commits
 - Format: `type(scope): descripción`
@@ -95,6 +100,22 @@ src/
 - CI: Jenkins pipeline
 - Health: `/health` endpoint required (readiness + liveness)
 - Env: config via environment variables (12-factor)
+
+### ECS Fargate (Alternative)
+- Task definition: JSON in `infra/task-definitions/{service}-{country}.json`
+- CPU/Memory: defined per environment (256/512 for dev, 512/1024 for prod)
+- Service discovery: AWS Cloud Map namespace
+
+### Environment Promotion
+- develop → staging → production (via branch merge)
+- Feature branches merge to `develop`
+- Staging deploy triggered on merge to staging branch
+- Production deploy requires approval gate in Jenkins
+
+### Jenkins Stages
+- Pipeline: cicd.socoomni.com (BitBucketMultibranchTrigger)
+- Stages: checkout → install → lint → test → sonar → build-image → push-ecr → deploy-{env}
+- Shared library: `@Library('femsa-pipeline-lib')` for common steps
 
 ## Constraints
 

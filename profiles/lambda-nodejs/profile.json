@@ -1,0 +1,18 @@
+{
+  "name": "lambda-nodejs",
+  "version": "1.0.0",
+  "description": "Node.js Lambda function with Serverless Framework or SAM, optimized for cold start and minimal bundle size",
+  "priority": 2,
+  "detection": {
+    "requiredFiles": ["package.json"],
+    "optionalFiles": [["serverless.yml", "serverless.yaml", "template.yaml", "template.yml"]],
+    "requiredDirs": [],
+    "repoNamePatterns": ["lambda"]
+  },
+  "runtime": {
+    "language": "typescript",
+    "platform": "lambda",
+    "buildTool": "serverless"
+  },
+  "tags": ["nodejs", "lambda", "serverless", "aws", "sam"]
+}

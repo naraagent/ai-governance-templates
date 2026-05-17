@@ -1,0 +1,13 @@
+{
+  "name": "Security Gate — ECS Hub",
+  "version": "1.0.0",
+  "description": "Pre-write security checks for ECS Hub microservices",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, check for: 1) Hardcoded secrets (API keys, tokens, passwords, AWS credentials). 2) SQL injection (string interpolation in queries). 3) console.log in production code (use pino logger). 4) Direct database access to another service's DB (violates microservice boundary). 5) Hardcoded service URLs (must use environment variables). 6) Unvalidated input (missing Zod/Joi schema). If issues found, DENY the write and explain what needs to be fixed."
+  }
+}

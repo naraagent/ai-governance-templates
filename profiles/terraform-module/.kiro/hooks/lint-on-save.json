@@ -1,0 +1,9 @@
+{
+  "name": "Terraform Validate on Save",
+  "description": "Run terraform fmt check and validate when .tf files are saved",
+  "event": "fileEdited",
+  "filePatterns": ["**/*.tf"],
+  "action": "runCommand",
+  "command": "terraform fmt -check ${file} && terraform validate",
+  "timeout": 30
+}

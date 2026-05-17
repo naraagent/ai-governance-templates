@@ -12,6 +12,10 @@
 - State: S3 + DynamoDB locking
 - Secrets: HashiCorp Vault + AWS Secrets Manager
 - CI/CD: Jenkins + terraform plan/apply
+- Code hosting: Bitbucket (workspace: digitaldifarma)
+- Accounts: management (907220922556), workloads (561041807907)
+- Approved modules: terraform-aws-eks, terraform-aws-rds, terraform-aws-elasticache, terraform-k8s-stack
+- Config DRY: Terragrunt for multi-environment/multi-account
 
 ## Build
 
