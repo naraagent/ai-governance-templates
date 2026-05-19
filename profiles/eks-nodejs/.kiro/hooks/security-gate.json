@@ -1,13 +1,13 @@
 {
-  "name": "Security Gate",
-  "version": "1.0.0",
-  "description": "Check for secrets and security issues before writing files",
+  "name": "Security Gate — Runtime Policy Enforcement",
+  "version": "2.0.0",
+  "description": "Intercepta acciones en archivos restringidos y consulta al Security Agent de NARA para evaluar si es seguro proceder.",
   "when": {
     "type": "preToolUse",
     "toolTypes": ["write"]
   },
   "then": {
     "type": "askAgent",
-    "prompt": "Before writing this file, check for: 1) Hardcoded secrets (API keys, tokens, passwords). 2) SQL injection (string interpolation in queries). 3) console.log in production code. 4) Untyped functions (missing return types). 5) Empty catch blocks. If issues found, DENY the write and explain what needs to be fixed."
+    "prompt": "Before proceeding with this write operation, verify it follows the security policies defined in .kiro/steering/security.md. If the file being modified is related to authentication, infrastructure, credentials, or CI/CD pipelines, flag it as requiring careful review. Check AGENTS.md restricted operations section."
   }
 }
