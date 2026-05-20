@@ -1,0 +1,20 @@
+{
+  "name": "lambda-python",
+  "version": "1.0.0",
+  "description": "Python Lambda function with Serverless Framework or SAM, FastAPI/Flask handlers, and AWS integrations",
+  "priority": 9,
+  "detection": {
+    "requiredFiles": [],
+    "optionalFiles": [["serverless.yml", "template.yaml"]],
+    "requiredDirs": [],
+    "repoNamePatterns": ["lambda"],
+    "specialChecks": ["requires requirements.txt OR pyproject.toml"]
+  },
+  "runtime": {
+    "language": "python",
+    "platform": "lambda",
+    "buildTool": "serverless",
+    "pythonVersion": "3.11"
+  },
+  "tags": ["python", "lambda", "serverless", "aws", "fastapi", "femsa"]
+}

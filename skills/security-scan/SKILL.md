@@ -1,21 +1,16 @@
 ---
-name: "security-scan"
-version: "1.0.0"
-description: "Security vulnerability scanning aligned with OWASP and FEMSA standards"
-triggers:
-  - "security scan"
-  - "vulnerability"
-  - "secret scan"
-  - "owasp"
-  - "seguridad"
-applies_to:
-  languages: ["*"]
-  categories: ["security", "owasp", "scanning"]
+name: security-scan
+description: "Use when scanning for vulnerabilities, secrets, or security issues in code. Performs comprehensive security analysis aligned with OWASP Top 10, OWASP Agentic Top 10, and enterprise security standards including secrets detection, injection analysis, and agent-specific risks."
+license: MIT
+metadata:
+  author: "nara-governance"
+  category: "security"
+  languages: "all"
 ---
 
 # Security Scan Skill
 
-You are performing a security scan on code following OWASP Top 10, OWASP Agentic Top 10, and FEMSA security standards.
+You are performing a security scan following OWASP Top 10, OWASP Agentic Top 10, and enterprise security standards.
 
 ## Scan Categories
 
@@ -75,11 +70,6 @@ Scan for patterns:
 |---|------|------|------|-------------|-------------|
 
 ### High Findings
-
-| # | Type | File | Line | Description | Remediation |
-|---|------|------|------|-------------|-------------|
-
-### Medium Findings
 
 | # | Type | File | Line | Description | Remediation |
 |---|------|------|------|-------------|-------------|

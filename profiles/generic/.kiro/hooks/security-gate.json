@@ -1,13 +1,13 @@
 {
-  "name": "Security Gate",
+  "name": "Security Gate — Baseline",
   "version": "1.0.0",
-  "description": "Check for security issues before writing any file",
+  "description": "Verify no secrets or security anti-patterns are introduced when writing files",
   "when": {
     "type": "preToolUse",
     "toolTypes": ["write"]
   },
   "then": {
     "type": "askAgent",
-    "prompt": "Before writing this file, check for hardcoded secrets (API keys, tokens, passwords, connection strings with credentials). If any secret pattern is detected, DENY the write and instruct to use environment variables or a secrets manager instead."
+    "prompt": "Before writing this file, verify: 1) No hardcoded secrets, tokens, or passwords. 2) No disabled security controls. 3) No sensitive data that would be logged or exposed. If the file is security-critical (auth, config, credentials), flag for careful review. If any issue found, DENY the write."
   }
 }

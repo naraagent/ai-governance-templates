@@ -1,0 +1,13 @@
+{
+  "name": "Security Gate — Lambda Python",
+  "version": "1.0.0",
+  "description": "Verify no secrets or IAM wildcards are introduced when writing Python or YAML files",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["write"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before writing this file, verify: 1) No hardcoded AWS credentials or secrets. 2) No IAM wildcard permissions (Action: * or Resource: *). 3) No eval()/exec() on untrusted input. 4) No sensitive data that would appear in CloudWatch logs. 5) If serverless.yml or template.yaml: check IAM role is least-privilege. If any issue found, DENY the write."
+  }
+}

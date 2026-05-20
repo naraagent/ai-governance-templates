@@ -1,0 +1,13 @@
+{
+  "name": "Lint on Save",
+  "version": "1.0.0",
+  "description": "Remind agent to validate code quality when files are edited",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["*.ts", "*.tsx", "*.js", "*.jsx", "*.py", "*.go", "*.java", "*.kt"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A source file was modified. Verify: 1) The code follows the project's linting rules. 2) No syntax errors introduced. 3) Imports are clean (no unused imports). If a linter is configured (eslint, ruff, gofmt), suggest running it."
+  }
+}

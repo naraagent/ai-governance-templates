@@ -1,21 +1,16 @@
 ---
-name: "architecture-review"
-version: "1.0.0"
-description: "Architecture and design pattern review for microservices"
-triggers:
-  - "architecture"
-  - "design review"
-  - "service design"
-  - "microservice"
-  - "arquitectura"
-applies_to:
-  languages: ["*"]
-  categories: ["architecture", "design", "microservices"]
+name: architecture-review
+description: "Use when reviewing system architecture, microservice design, or evaluating service boundaries. Assesses resilience patterns, observability, security architecture, data patterns, and deployment practices against enterprise standards."
+license: MIT
+metadata:
+  author: "nara-governance"
+  category: "architecture"
+  languages: "all"
 ---
 
 # Architecture Review Skill
 
-You are reviewing code architecture following FEMSA microservices standards and enterprise patterns.
+You are reviewing code architecture following microservices standards and enterprise patterns.
 
 ## Review Dimensions
 
@@ -44,7 +39,7 @@ You are reviewing code architecture following FEMSA microservices standards and 
 ### 4. Security Architecture
 - Authentication at gateway level
 - Authorization per endpoint
-- Secrets in Vault (never in code or env files committed)
+- Secrets in Vault or Secrets Manager (never in code)
 - TLS everywhere (including internal traffic in production)
 - Least privilege for service accounts
 
@@ -58,7 +53,7 @@ You are reviewing code architecture following FEMSA microservices standards and 
 ### 6. Deployment
 - 12-Factor App compliance
 - Container-native (multi-stage Dockerfile)
-- Helm charts for Kubernetes
+- Helm charts or ECS task definitions for orchestration
 - Blue/green or canary deployments
 - Rollback plan documented
 
