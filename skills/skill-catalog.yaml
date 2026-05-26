@@ -1,0 +1,92 @@
+# Skill Catalog — NARA AI Governance Platform
+# Standard: agentskills.io spec + Addy Osmani lifecycle model
+# Updated: 2026-05-26
+#
+# trigger-type:
+#   universal    → Se instala SIEMPRE en todo repo
+#   conditional  → Se instala solo si detected_stack matchea stack-match
+#
+# Máximo por repo: 7-9 skills (7 universales + 0-2 condicionales)
+# Rationale: >8 skills degradan activación correcta (ETH Zurich + Claude Code 650 trials)
+
+skills:
+  # ═══════════════════════════════════════════════════════════════
+  # UNIVERSALES — Se instalan en TODOS los repos
+  # ═══════════════════════════════════════════════════════════════
+  - name: code-review
+    trigger-type: universal
+    category: review
+    description: "Automated code review (security, quality, architecture, testing, git hygiene)"
+    lifecycle-phase: review
+
+  - name: security-scan
+    trigger-type: universal
+    category: security
+    description: "OWASP Top 10 + Agentic Top 10 vulnerability scan"
+    lifecycle-phase: review
+
+  - name: architecture-review
+    trigger-type: universal
+    category: architecture
+    description: "Service boundaries, resilience, observability, security architecture"
+    lifecycle-phase: review
+
+  - name: dependency-review
+    trigger-type: universal
+    category: dependencies
+    description: "CVE check, licensing, maintenance status, supply chain risk"
+    lifecycle-phase: review
+
+  - name: pr-description
+    trigger-type: universal
+    category: documentation
+    description: "Standardized PR descriptions with impact, testing, and checklist"
+    lifecycle-phase: ship
+
+  - name: debugging-triage
+    trigger-type: universal
+    category: debugging
+    description: "5-step systematic debugging: reproduce, localize, reduce, fix, guard"
+    lifecycle-phase: verify
+
+  - name: test-strategy
+    trigger-type: universal
+    category: testing
+    description: "What to test, test pyramid, framework selection, coverage approach"
+    lifecycle-phase: verify
+
+  # ═══════════════════════════════════════════════════════════════
+  # CONDICIONALES — Se instalan solo si detected_stack matchea
+  # ═══════════════════════════════════════════════════════════════
+  - name: api-design
+    trigger-type: conditional
+    category: api-design
+    description: "Contract-first API design, REST conventions, error semantics"
+    lifecycle-phase: build
+    stack-match:
+      frameworks: [express, fastapi, nestjs, django, flask, hono, koa, gin, springboot]
+
+  - name: migration-guide
+    trigger-type: conditional
+    category: migration
+    description: "DB migrations, API deprecations, breaking changes, expand-contract"
+    lifecycle-phase: ship
+    stack-match:
+      infrastructure: [terraform, alembic, prisma, flyway, typeorm, sequelize, knex]
+
+  - name: performance-review
+    trigger-type: conditional
+    category: performance
+    description: "Measure-first optimization, Core Web Vitals, profiling, bundle analysis"
+    lifecycle-phase: verify
+    stack-match:
+      frameworks: [react, nextjs, angular, vue, svelte, remix]
+
+  - name: release-checklist
+    trigger-type: conditional
+    category: deployment
+    description: "Pre-deploy gates, rollback planning, post-deploy validation"
+    lifecycle-phase: ship
+    stack-match:
+      infrastructure: [kubernetes, ecs, eks, docker, helm]
+      platforms: [android, ios, mobile]

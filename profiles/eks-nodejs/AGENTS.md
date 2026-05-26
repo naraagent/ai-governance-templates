@@ -1,134 +1,24 @@
-# AGENTS.md — EKS Node.js Microservice
+# eks-nodejs
 
-> Standard: AAIF/Linux Foundation AGENTS.md v1.0
-> Profile: eks-nodejs | Org: FEMSA Digital
-> Runtime: Node.js 20 LTS on AWS EKS (K8s 1.34)
+## Commands
+- Install: `npm ci`
+- Build: `npm run build`
+- Dev: `npm run dev`
+- Test: `npm test`
+- Coverage: `npm run test:coverage`
+- Lint: `npm run lint`
 
-## Identity
+## Testing
+- Run tests before marking any task as done
+- New code must have corresponding unit tests
+- Coverage target: 70%+ on new code
+- External services must be mocked in unit tests
 
-- Organization: FEMSA Digital
-- Service type: Node.js/TypeScript microservice
-- Runtime: EKS (Kubernetes 1.34)
-- Deploy: Helm charts (Capsula pattern) via Jenkins
-- Registry: AWS ECR
-- Secrets: HashiCorp Vault
-- CI: Jenkins multibranch pipeline (cicd.socoomni.com)
-- Code hosting: Bitbucket (workspace: digitaldifarma)
-- Environments: CL (Chile), CO (Colombia), EC (Ecuador), MX (Mexico)
-
-## Build
-
-```bash
-npm ci                    # Install (CI mode, uses lockfile)
-npm run build            # TypeScript compilation
-npm run lint             # ESLint + Prettier check
-npm test                 # Jest/Vitest tests
-npm run test:coverage    # With coverage report
-```
-
-## Project Structure
-
-```
-src/
-├── controllers/     # Route handlers (Express/Fastify)
-├── services/        # Business logic
-├── repositories/    # Data access layer
-├── models/          # Types/interfaces
-├── middlewares/     # HTTP middlewares
-├── utils/           # Pure helpers
-├── config/          # Configuration (env-based)
-└── tests/           # Tests (mirror of src/)
-```
-
-## Conventions
-
-### Language
-- TypeScript obligatorio (no JavaScript plano)
-- `strict: true` en tsconfig.json
-- No `any` — usar tipos explícitos o `unknown` con type guards
-- `const`/`let` only (no `var`)
-- Async/await over callbacks and `.then()` chains
-- Structured logger (pino/winston) — NEVER `console.log`
-
-### Dependencies
-- Pinned to exact versions (no `^`, no `~`)
-- Approved: Express/Fastify, Prisma/TypeORM, Zod/Joi, Pino/Winston, Jest/Vitest, Axios
-- NOT approved: Koa, Hapi, Sequelize, Mocha, request (deprecated)
-
-### Error Handling
-- Explicit error handling — no empty catches
-- Always log error with context before rethrowing
-- Use custom error classes with HTTP status codes
-- Never swallow errors silently
-
-### Branching
-- Format: `type/TICKET-descripcion-corta`
-- Types: `feature/`, `fix/`, `bugfix/`, `hotfix/`, `release/`, `chore/`
-- Integration: `develop` | Production: `main`
-- Bitbucket branch regex: `(.*staging.*|chore/deps-update|.*main.*|dev/{country}/.*|fix/.*|hotfix/.*)`
-- Service naming convention: `{service}-{country}` suffix (e.g., `customer-service-cl`, `payment-service-mx`)
-
-### Commits
-- Format: `type(scope): descripción`
-- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `ci`, `build`
-- Max 72 chars, lowercase, imperative
-
-### Pull Requests
-- Title: `TICKET-123 Clear description`
-- Max: 400 lines (critical > 800)
-- Target: `develop`
-
-### Security
-- NEVER hardcode secrets — use env vars + Vault
-- HTTPS only for external calls
-- Input validation with Zod/Joi on every endpoint
-- Parameterized queries only
-- Dependencies pinned, no `latest`
-- No SSL verification disable
-
-### Testing
-- All business logic requires unit tests
-- Coverage target: 70%+ new code
-- Framework: Jest or Vitest
-- External services mocked (never real in unit tests)
-- Naming: `should <behavior> when <condition>`
-
-## Deployment
-
-- Container: Multi-stage Dockerfile (node:20-alpine)
-- Orchestration: Helm chart (Capsula pattern)
-- CI: Jenkins pipeline
-- Health: `/health` endpoint required (readiness + liveness)
-- Env: config via environment variables (12-factor)
-
-### ECS Fargate (Alternative)
-- Task definition: JSON in `infra/task-definitions/{service}-{country}.json`
-- CPU/Memory: defined per environment (256/512 for dev, 512/1024 for prod)
-- Service discovery: AWS Cloud Map namespace
-
-### Environment Promotion
-- develop → staging → production (via branch merge)
-- Feature branches merge to `develop`
-- Staging deploy triggered on merge to staging branch
-- Production deploy requires approval gate in Jenkins
-
-### Jenkins Stages
-- Pipeline: cicd.socoomni.com (BitBucketMultibranchTrigger)
-- Stages: checkout → install → lint → test → sonar → build-image → push-ecr → deploy-{env}
-- Shared library: `@Library('femsa-pipeline-lib')` for common steps
-
-## Constraints
-
-- Do NOT modify `Dockerfile` without DevOps review
-- Do NOT add dependencies without explicit justification
-- Do NOT use `any` type
-- Do NOT disable TypeScript strict checks
-- Do NOT commit `.env` files
-- Do NOT introduce ORM migrations without DBA review
-
-## Agent Autonomy
-
-- Level: supervised
-- Allowed: read, lint, test, suggest code changes
-- Blocked: deploy, modify Helm/Jenkins, access Vault directly
-- Approval: new dependencies, DB schema changes, API contract changes
+## Do Not
+- Do not modify Dockerfile without DevOps review
+- Do not add dependencies without explicit justification
+- Do not use `any` type — use explicit types or `unknown`
+- Do not disable TypeScript strict checks
+- Do not commit `.env` files or secrets
+- Do not use `console.log` — use structured logger (pino/winston)
+- Do not introduce ORM migrations without DBA review
